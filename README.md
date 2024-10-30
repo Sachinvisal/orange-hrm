@@ -1,46 +1,26 @@
-# Getting Started with Create React App
+# Nested Comment Section
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A nested comment system is a feature that allows users to share their opinions on a comment made by the author of the post or by another user. This creates a multi-level structure of the conversation, where each comment can have child comments (or replies) that form an organized thread. It visually represents the conversation in levels or layers, enabling users to follow discussions more easily, as every reply is linked to the original comment, keeping related responses together.
 
-## Available Scripts
+## Typically a nested comment system includes:
 
-In the project directory, you can run:
+- **Parent Comment**: The original comment which is on the top layer and can have multiple responses to it.
+- **Child Comments (Replies)**: Comments in response to a parent or another reply, displayed in an indented manner.
+- **Upvote/Downvote**: Each comment can be either liked or disliked.
+- **Timestamp**: The timestamp of the comment can be shown.
+- **Threaded Display**: Every reply is shown indented to indicate the relationship within the thread.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clone the repository:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+https://github.com/Sachinvisal/orange-hrm.git
+cd orange-hrm.git
 
-### `npm test`
+Install Using npm:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm install
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run the code
+npm start
