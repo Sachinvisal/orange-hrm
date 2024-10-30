@@ -17,7 +17,8 @@ Clone the repository:
 ```bash
 https://github.com/Sachinvisal/orange-hrm.git
 cd orange-hrm.git
-npm install
-npm i
-npm run start
 
+Install Using npm:
+
+```bash
+npm install
