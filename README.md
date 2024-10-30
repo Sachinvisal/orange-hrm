@@ -20,5 +20,7 @@ cd orange-hrm.git
 
 Install Using npm:
 
-```bash
 npm install
+
+Run the code
+npm start
