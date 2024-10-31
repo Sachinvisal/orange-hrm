@@ -57,20 +57,20 @@ export class CommentNode {
       return tree;
     };
   
-    const deleteNode = (tree: CommentNode, id: number): CommentNode | null => {
-      if (!(tree instanceof CommentNode)) {
-        throw new Error("Tree root must be an instance of CommentNode");
-      }
+    
+    //   if (!(tree instanceof CommentNode)) {
+    //     throw new Error("Tree root must be an instance of CommentNode");
+    //   }
   
-      if (tree.id === id) return null;
+    //   if (tree.id === id) return null;
   
-      tree.items = tree.items
-        .map((child) => deleteNode(child, id))
-        .filter((child): child is CommentNode => child !== null);
-      return tree;
-    };
+    //   tree.items = tree.items
+    //     .map((child) => deleteNode(child, id))
+    //     .filter((child): child is CommentNode => child !== null);
+    //   return tree;
+    // };
   
-    return { insertNode, editNode, deleteNode };
+    return { insertNode, editNode };
   };
   
   export default useNode;
