@@ -233,19 +233,7 @@
   align-items: center;
 }
 
-.textareaContainer {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Optional: adds space between the textarea and button */
-}
 
-textarea {
-  flex-grow: 1; /* Makes the textarea take up available space */
-}
-
-.commentButton {
-  align-self: flex-end; /* Aligns the button to the end of the container */
-}
 
 .replyButton i.envelope-icon {
   margin-right: 5px;
