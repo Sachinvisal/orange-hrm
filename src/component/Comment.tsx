@@ -42,8 +42,8 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
     return comment.items.length + comment.items.reduce((count, child) => count + getReplyCount(child), 0);
   };
 
-  const handleVote = (delta: number) => {
-    setVotes((prev) => prev + delta);
+  const handleVote = (delta: number) => {  
+    setVotes((prev) => prev + delta);  // Increment or decrement vote count
   };
 
   const onAddComment = () => {

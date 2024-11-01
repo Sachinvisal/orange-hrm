@@ -8,8 +8,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-     
+     { /* Comment input for adding new top-level comments */ }
       <CommentInput />
+      {/* Root comment component to display the main comment thread */}
       <RootComment />
     </div>
   );
@@ -17,14 +18,14 @@ const App: React.FC = () => {
 
 const CommentInput: React.FC = () => {
   const [newComment, setNewComment] = useState<string>("");
-  const { handleInsertNode } = useCommentContext();
+  const { handleInsertNode } = useCommentContext(); // Access insert new comments
 
   const addComment = () => {
     if (newComment.trim() === "") {
       alert("Comment cannot be empty!");
       return;
     }
-    handleInsertNode(1, newComment);
+    handleInsertNode(1, newComment); //Adds new comment to the root
     setNewComment("");
   };
 
@@ -41,7 +42,7 @@ const CommentInput: React.FC = () => {
     </div>
   );
 };
-
+// Root component for rendering the entire comment thread
 const RootComment: React.FC = () => {
   const { commentsData } = useCommentContext();
 

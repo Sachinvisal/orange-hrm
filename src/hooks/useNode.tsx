@@ -10,22 +10,22 @@ export class CommentNode {
     }
   
     addComment(item: CommentNode) {
-      this.items.push(item);
+      this.items.push(item); // Add new comment to current node's items
     }
   
     editComment(value: string) {
-      this.name = value;
+      this.name = value; // Edit the current comment's text
     }
   
     deleteComment(id: number) {
-      this.items = this.items.filter((item) => item.id !== id);
+      this.items = this.items.filter((item) => item.id !== id); // Delete a comment by ID
     }
   }
   
   const useNode = () => {
     const insertNode = (tree: CommentNode, commentId: number, item: string): CommentNode => {
       if (!(tree instanceof CommentNode)) {
-        throw new Error("Tree root must be an instance of CommentNode");
+        throw new Error("Tree root must be an instance of CommentNode");  // Add new comment node
       }
   
       if (tree.id === commentId) {
@@ -58,17 +58,7 @@ export class CommentNode {
     };
   
     
-    //   if (!(tree instanceof CommentNode)) {
-    //     throw new Error("Tree root must be an instance of CommentNode");
-    //   }
-  
-    //   if (tree.id === id) return null;
-  
-    //   tree.items = tree.items
-    //     .map((child) => deleteNode(child, id))
-    //     .filter((child): child is CommentNode => child !== null);
-    //   return tree;
-    // };
+
   
     return { insertNode, editNode };
   };

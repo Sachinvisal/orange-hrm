@@ -5,7 +5,7 @@ import useNode, { CommentNode } from "../hooks/useNode";
 function convertToCommentNode(data: any): CommentNode {
   if (!(data instanceof CommentNode)) {
     const node = new CommentNode(data.id, data.name, []);
-    node.items = (data.items || []).map(convertToCommentNode);
+    node.items = (data.items || []).map(convertToCommentNode); // Convert nested comments
     return node;
   }
   return data;
@@ -30,12 +30,12 @@ export const CommentProvider: React.FC<CommentProviderProps> = ({ children }) =>
 
   const handleInsertNode = (folderId: number, item: string) => {
     const updatedComments = insertNode(convertToCommentNode(commentsData), folderId, item);
-    setCommentsData(updatedComments);
+    setCommentsData(updatedComments); // Update the comments data with new comment
   };
 
   const handleEditNode = (folderId: number, value: string) => {
     const updatedComments = editNode(convertToCommentNode(commentsData), folderId, value);
-    setCommentsData(updatedComments);
+    setCommentsData(updatedComments); // Update the comments data with edited comment
   };
 
   // Function to count all comments and replies recursively
@@ -60,6 +60,7 @@ export const CommentProvider: React.FC<CommentProviderProps> = ({ children }) =>
   );
 };
 
+// Hook to access the comment context
 export const useCommentContext = () => {
   const context = useContext(CommentContext);
   if (!context) {
