@@ -17,9 +17,7 @@ export class CommentNode {
       this.name = value; // Edit the current comment's text
     }
   
-    deleteComment(id: number) {
-      this.items = this.items.filter((item) => item.id !== id); // Delete a comment by ID
-    }
+ 
   }
   
   const useNode = () => {
