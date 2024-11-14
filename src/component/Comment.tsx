@@ -6,7 +6,6 @@ import Action from "./Action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-// Define types for props and comment structure
 interface CommentProps {
   comment: CommentType;
   depth?: number;
@@ -36,21 +35,19 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
 
   if (!comment) return null;
 
-  // Function to count total replies for a comment
   const getReplyCount = (comment: CommentType): number => {
     if (!comment.items || comment.items.length === 0) return 0;
     return comment.items.length + comment.items.reduce((count, child) => count + getReplyCount(child), 0);
   };
 
-  // Handles upvoting or downvoting
   const handleVote = (delta: number) => {  
     setVotes((prev) => delta);
   };
 
-  // Adds a new reply or edits an existing comment with validation for 10 characters minimum
   const onAddComment = () => {
-    if (input.trim().length < 10) {
-      alert("Comment must be at least 10 characters long!");
+    // Validation: Check if input is fewer than 10 characters
+    if (input.trim().length > 9) {
+      alert("Comment cannot exceed 9 characters!");
       return;
     }
 
@@ -68,7 +65,6 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
     setEditMode(false);
   };
 
-  // Toggles reply input visibility
   const toggleReplyInput = () => {
     setShowReplyInput((prev) => !prev);
   };
@@ -87,7 +83,6 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         </div>
       </div>
 
-      {/* Editable comment text */}
       <span
         contentEditable={editMode}
         suppressContentEditableWarning={editMode}
@@ -97,18 +92,15 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         {comment.name || "Unnamed Comment"}
       </span>
 
-      {/* Display reply count */}
       <div style={{ marginTop: "5px", color: "#555" }}>
         {getReplyCount(comment)} replies
       </div>
 
-      {/* Inline Actions: Reply, Edit, and Delete */}
       <div className="inlineActions" style={{ display: "flex", gap: "10px", alignItems: "center", marginTop: "5px" }}>
         <Action className="replyButton" type={<FontAwesomeIcon icon={faEnvelope} className="icon" />} handleClick={toggleReplyInput} />
         <Action className="editButton" type={<FontAwesomeIcon icon={faPenToSquare} className="icon" />} handleClick={() => setEditMode(true)} />
       </div>
 
-      {/* Reply input area */}
       {showReplyInput && (
         <div className="inputContainer">
           <input
@@ -123,7 +115,6 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         </div>
       )}
 
-      {/* Render child comments */}
       <div>
         {expand && comment.items?.map((child) => (
           <Comment key={child.id} comment={child} depth={depth + 1} />

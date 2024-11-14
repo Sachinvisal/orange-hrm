@@ -1,4 +1,4 @@
-
+// App.tsx
 
 import './App.css'; 
 import React, { useState } from "react";
@@ -8,7 +8,7 @@ import { useCommentContext } from "./stateManagement/commentContext";
 const App: React.FC = () => {
   return (
     <div className="App">
-      { /* Comment input for adding new top-level comments */ }
+      {/* Comment input for adding new top-level comments */}
       <CommentInput />
       {/* Root comment component to display the main comment thread */}
       <RootComment />
@@ -21,9 +21,9 @@ const CommentInput: React.FC = () => {
   const { handleInsertNode } = useCommentContext(); // Access insert new comments
 
   const addComment = () => {
-    // Validation: Check if comment is at least 10 characters
-    if (newComment.trim().length < 10) {
-      alert("Comment must be at least 10 characters long!");
+    // Validation: Check if comment is fewer than 10 characters
+    if (newComment.trim().length > 9) {
+      alert("Comment cannot exceed 9 characters!");
       return;
     }
     handleInsertNode(1, newComment); // Adds new comment to the root
