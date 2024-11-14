@@ -1,4 +1,4 @@
-// In Comment.tsx
+// Comment.tsx
 
 import React, { useState, useRef, useEffect } from "react";
 import { useCommentContext } from "../stateManagement/commentContext";
@@ -19,7 +19,7 @@ interface CommentType {
   items?: CommentType[];
 }
 
-const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
+const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => { 
   const [input, setInput] = useState<string>("");
   const [editMode, setEditMode] = useState<boolean>(false);
   const [showReplyInput, setShowReplyInput] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
   const [timestamp, setTimestamp] = useState<string>(comment.timestamp || new Date().toLocaleString());
 
   const inputRef = useRef<HTMLSpanElement>(null);
-  const { handleInsertNode, handleEditNode } = useCommentContext();
+  const { handleInsertNode, handleEditNode } = useCommentContext(); // Access insert and edit functions
 
   useEffect(() => {
     if (editMode && inputRef.current) inputRef.current.focus();
@@ -42,13 +42,15 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
     return comment.items.length + comment.items.reduce((count, child) => count + getReplyCount(child), 0);
   };
 
+  // Handles upvoting or downvoting
   const handleVote = (delta: number) => {  
-    setVotes((prev) => prev + delta);  // Increment or decrement vote count
+    setVotes((prev) => delta);
   };
 
+  // Adds a new reply or edits an existing comment with validation for 10 characters minimum
   const onAddComment = () => {
-    if (!input.trim()) {
-      alert("Comment cannot be empty!");
+    if (input.trim().length < 10) {
+      alert("Comment must be at least 10 characters long!");
       return;
     }
 
@@ -66,6 +68,7 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
     setEditMode(false);
   };
 
+  // Toggles reply input visibility
   const toggleReplyInput = () => {
     setShowReplyInput((prev) => !prev);
   };
@@ -79,11 +82,12 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         <div className="commentActions" style={{ display: "flex", alignItems: "center", marginLeft: "auto", marginBottom: "5px" }}>
           <Action className="vote" type="Upvote" handleClick={() => handleVote(1)} />
           <span className="votePoints">{votes} points</span>
-          <Action className="vote" type="Downvote" handleClick={() => handleVote(-1)} />
+          <Action className="vote" type="Downvote" handleClick={() => handleVote(0)} />
           <span className="timestamp">{timestamp}</span>
         </div>
       </div>
 
+      {/* Editable comment text */}
       <span
         contentEditable={editMode}
         suppressContentEditableWarning={editMode}
@@ -104,6 +108,7 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         <Action className="editButton" type={<FontAwesomeIcon icon={faPenToSquare} className="icon" />} handleClick={() => setEditMode(true)} />
       </div>
 
+      {/* Reply input area */}
       {showReplyInput && (
         <div className="inputContainer">
           <input
@@ -118,6 +123,7 @@ const Comment: React.FC<CommentProps> = ({ comment, depth = 0 }) => {
         </div>
       )}
 
+      {/* Render child comments */}
       <div>
         {expand && comment.items?.map((child) => (
           <Comment key={child.id} comment={child} depth={depth + 1} />
